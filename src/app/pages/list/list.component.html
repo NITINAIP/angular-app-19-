@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 text-end">
+            <button class="btn btn-sm btn-info" (click)="onCreate()">สร้าง</button>
+        </div>
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                       
+                        <tr>
+                            <th scope="col">rowNum</th>
+                            <th scope="col">name</th>
+                            <th scope="col">address</th>
+                            <th scope="col">createdAt</th>
+                            <th scope="col">avatar</th>
+                            <th scope="col"></th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of userStore.data(); track $index) {
+                        <tr>
+                            <td>{{$index+1}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.address}}</td>
+                            <td>{{item.createdAt | date:'dd/MMM/yyyy'}}</td>
+                            <td><img [src]="item.avatar" width="100" height="100" alt="avatar"></td>
+                            <td>
+                                <a class="link-danger cursor-pointer" (click)="onDelete(item)">ลบ</a>
+                            </td>
+                            <td> <a class="link-primary cursor-pointer" (click)="onEdit(item)">แก้ไข</a></td>
+
+                        </tr>
+                        }
+                        @empty {
+                        <tr>
+                            <td colspan="5">ไม่พบข้อมูล</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
